@@ -1,0 +1,61 @@
+{% extends "blog/base.html" %}
+
+{% block title %}My Blog{% endblock %}
+
+{% block content %}
+  <h1>My Blog</h1>
+     <div class="container-fluid">
+
+            <!--Section: Blog v.4-->
+
+ <section class="section extra-margins">
+  {% for post in posts %}
+
+
+            <!--Section: Blog v.3-->
+
+
+                <!--Section heading-->
+                <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">{{ post.title }}</h1>
+                <!--Section sescription-->
+                <p class="section-description wow fadeIn" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam. Quia, minima?</p>
+
+                <!--First row-->
+                <div class="row">
+
+                    <!--First column-->
+                    <div class="col-md-5 m-b-r">
+                        <!--Featured image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{ post.image.url}}">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <!--/First column-->
+
+                    <!--Second column-->
+                    <div class="col-md-7 m-b-r wow fadeIn" data-wow-delay="0.2s">
+                        <!--Excerpt-->
+                        <h5 class="teal-text "><i class="fa fa-money "></i>Business</h5>
+                        <h4> <a href="{{ post.get_absolute_url }}">
+        {{ post.title }}
+      </a></h4>
+                        <p> {{ post.body|truncatewords:30|linebreaks }}</p>
+                        <p>by <a><strong>{{ post.author }}</strong></a> Published {{ post.publish }}</p>
+                        <a href="{{ post.get_absolute_url }}" class="btn btn-primary">read more</a>
+                    </div>
+                    <!--/Second column-->
+
+                </div>
+                <!--/First row-->
+
+
+
+
+  {% endfor %}
+ </section>
+     </div>
+   {% include "pagination.html" with page=page_obj %}
+{% endblock %}
