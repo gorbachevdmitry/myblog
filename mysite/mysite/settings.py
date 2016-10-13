@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'taggit',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +109,9 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'assets/media/')
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'gorbachevdmitr@gmail.com'
+EMAIL_HOST_PASSWORD = 'programmer123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

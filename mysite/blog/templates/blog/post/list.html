@@ -9,6 +9,18 @@
             <!--Section: Blog v.4-->
 
  <section class="section extra-margins">
+ {% if tag %}
+  <h2>Posts tagged with "{{ tag.name }}"</h2>
+{% endif %}
+ <p class="tags">
+  Tags:
+  {% for tag in post.tags.all %}
+    <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+      {{ tag.name }}
+    </a>
+    {% if not forloop.last %}, {% endif %}
+  {% endfor %}
+</p>
   {% for post in posts %}
 
 
@@ -17,6 +29,7 @@
 
                 <!--Section heading-->
                 <h1 class="section-heading wow fadeIn" data-wow-delay="0.2s">{{ post.title }}</h1>
+      <p class="tags">Tags: {{ post.tags.all|join:", " }}</p>
                 <!--Section sescription-->
                 <p class="section-description wow fadeIn" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur accusamus veniam. Quia, minima?</p>
 
@@ -57,5 +70,5 @@
   {% endfor %}
  </section>
      </div>
-   {% include "pagination.html" with page=page_obj %}
+   {% include "pagination.html" with page=posts %}
 {% endblock %}
